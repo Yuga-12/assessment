@@ -11,17 +11,28 @@ assessmentButton.onclick = () => {
     return;
   }
 
-  //診断結果表示の作成
-  //作成の前にタグを空にする
+  //headerDivisionの作成
   resultDivision.innerText = " ";
-  const header = document.createElement("h3"); //h3タグを作る
-  header.innerText = "診断結果"; //中身の文章を設定
-  resultDivision.appendChild(header); //divの子要素として追加
+  const headerDivision = document.createElement("div");
+  headerDivision.setAttribute("class", "card-header text-bg-primary");
+  headerDivision.innerText = "診断結果"; 
+  
+  //bodyDivisionの作成
+  const bodyDivision =document.createElement("div");
+  bodyDivision.setAttribute("class" , "card-body");
 
   const paragraph = document.createElement("p");
-  const result = assessment(userName); //診断結果の取得
+  paragraph.setAttribute("class" , "card-text")
+  const result = assessment(userName);
   paragraph.innerText = result;
-  resultDivision.appendChild(paragraph);
+  bodyDivision.appendChild(paragraph);
+
+  // resultDivision に Bootstrap のスタイルを適用する
+  resultDivision.setAttribute("class" , "card");
+
+  // headerDivision と bodyDivision を resultDivision に差し込む
+  resultDivision.appendChild(headerDivision);
+  resultDivision.appendChild(bodyDivision);
 
   //TODO Tweetエリアの作成
   tweetDivision.innerText = " ";
